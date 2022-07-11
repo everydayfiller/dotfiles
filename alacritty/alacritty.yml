@@ -1,0 +1,49 @@
+window:
+  padding:
+    x: 15
+    y: 15
+  decorations: none
+  class:
+    instance: Alacritty
+    general: Alacritty
+  opacity: 0.9
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: JetBrainsMono Nerd Font Mono
+    style: Regular
+  bold:
+    family: JetBrainsMono Nerd Font Mono
+    style: bold
+  italic:
+    family: JetBrainsMono Nerd Font Mono
+    style: italic
+  bold_italic:
+    family: JetBrainsMono Nerd Font Mono
+    style: BoldItalic
+  size: 7 
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+
+draw_bold_text_with_bright-colours: false
+
+cursor:
+  style:
+    shape: Block
+    blinking: Off
+    unfocused_hollow: true
+
+mouse:
+  hide_when_typing: true
+
+shell:
+  program: /usr/bin/bash
+
