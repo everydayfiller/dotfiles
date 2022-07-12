@@ -98,6 +98,7 @@ gaps outer 0
 assign [class="Alacritty"] → $ws1
 assign [class="Brave-browser"] → $ws2
 assign [class="Thunar"] → $ws7
+assign [class="discord"] → $ws8
 assign [class="Audacious"] → $ws9
 
 for_window [class="Alacritty"] focus
@@ -133,11 +134,11 @@ bar {
     colors {
             background #111111
             statusline #666666
-            separator  #333333
+            separator  #222222
             focused_workspace     #111111 #222222 #eeeeee
             active_workspace      #111111 #111111 #666666
             inactive_workspace    #111111 #111111 #666666
-            urgent_workspace      #111111 #d42121 #FFFFFF
+            urgent_workspace      #111111 #111111 #d42121
     }
 }
 
@@ -148,13 +149,15 @@ client.placeholder      #111111 #222222 #aaaaaa #113311
 client.urgent           #d42121 #d42121 #f7f7f7 #d42121
 client.background       #111111
 
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id picom -b --config ~/.config/picom/picom.conf --experimental-backend
+exec --no-startup-id bluetooth-autoconnect -v
 exec --no-startup-id pamac-tray
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id picom -b --config ~/.config/picom/picom.conf --experimental-backend
-exec --no-startup-id brave
 exec --no-startup-id audacious
+exec --no-startup-id discord
+exec --no-startup-id brave
 
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id feh --bg-fill --randomize ~/.wallpaper &
