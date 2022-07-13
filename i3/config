@@ -58,7 +58,8 @@ bindsym $mod+t exec --no-startup-id thunar
 bindsym $mod+u exec --no-startup-id pavucontrol
 bindsym $mod+v split toggle
 bindsym $mod+w exec --no-startup-id firefox
-bindsym $mod+x mode "$mode_system"
+# bindsym $mod+x mode "$mode_system"
+bindsym $mod+x exec --no-startup-id ~/.config/i3/scripts/power-menu.sh
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Space focus mode_toggle
 bindsym $mod+Right workspace next
@@ -71,10 +72,10 @@ bindsym $mod+shift+p exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 bindsym $mod+shift+r restart
 bindsym $mod+shift+space floating toggle
 
-bindsym $mod+$alt+Ctrl+$right resize shrink width 3 px
-bindsym $mod+$alt+Ctrl+$up resize grow height 3 px
-bindsym $mod+$alt+Ctrl+$down resize shrink height 3 px
-bindsym $mod+$alt+Ctrl+$left resize grow width 3 px
+bindsym $mod+$alt+Ctrl+$right resize shrink width 5 px
+bindsym $mod+$alt+Ctrl+$up resize grow height 5 px
+bindsym $mod+$alt+Ctrl+$down resize shrink height 5 px
+bindsym $mod+$alt+Ctrl+$left resize grow width 5 px
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '5%+'"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '5%-'"
@@ -164,4 +165,5 @@ exec --no-startup-id picom -b --config ~/.config/picom/picom.conf --experimental
 
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id feh --bg-fill --randomize ~/.wallpaper &
+exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
 
