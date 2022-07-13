@@ -1,0 +1,44 @@
+* {
+    BG: transparent;
+    text-h: #eeeeee;
+    text-n: #555555;
+    background-color: @BG;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    background-color:#000000ef;
+    fullscreen: true;
+    padding: 40% 0 0 75%;
+}
+
+mainbox {
+    children: [ listview ];
+}
+
+listview {
+    padding: 12 24;
+    columns: 1;
+    lines: 4;
+}
+
+element {
+    padding: 8 0;
+    spacing: 12;
+    orientation: horizontal;
+    children: [ element-text ];
+    text-color: @text-n;
+}
+
+element-text {
+    text-color: inherit;
+    highlight: @text-h;
+    vertical-align: 0.5;
+}
+
+element selected {
+    text-color: @text-h;
+}

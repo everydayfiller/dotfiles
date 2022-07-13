@@ -1,10 +1,7 @@
 configuration {
-    display-drun: "run ";
-    display-window: "win ";
-    drun-display-format: "{name}";
+    modes: [ combi ];
+    combi-modes: [ window, drun, run ];
     font: "San Francious Display 10";
-    modi: "window,run,drun";
-    show-icons: true;
 }
 
-@theme "theme.rasi"
+@theme "theme-drun.rasi"

@@ -1,0 +1,65 @@
+* {
+    show-icon: true;
+    bg: transparent;
+    text-h: #eeeeee;
+    text-n: #555555;
+    background-color: @bg;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    background-color:#000000ef;
+    fullscreen: true;
+    padding: 35% 15% 35% 65%;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    num-rows: 6;
+    num-filtered-rows: 6;
+}
+
+inputbar {
+    children: [ entry ];
+}
+
+listview {
+    padding: 12 24;
+    columns: 1;
+    lines: 5;
+}
+
+element {
+    padding: 8 0;
+    spacing: 12;
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
+    text-color: @text-n;
+}
+
+element-text {
+    text-color: inherit;
+    highlight: @text-h;
+    vertical-align: 0.5;
+}
+
+element selected {
+    text-color: @text-h;
+}
+
+element-icon {
+    size: 16;
+}
+
+entry {
+    border-color: #111111;
+    border: 0 0 1 0;
+    margin: 12 24 0 24;
+    padding: 0 0 5 0;
+    text-color: @text-n;
+    cursor: pointer;
+}
+
