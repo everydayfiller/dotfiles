@@ -51,7 +51,8 @@ bindsym $mod+a focus parent
 bindsym $mod+b bar mode toggle
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+f fullscreen toggle
-bindsym $mod+p exec --no-startup-id pamac-manager
+bindsym $mod+m exec --no-startup-id alacritty -e cmus
+bindsym $mod+p exec --no-startup-id pamac-mainager
 bindsym $mod+q kill
 bindsym $mod+s exec --no-startup-id htop
 bindsym $mod+t exec --no-startup-id thunar
@@ -103,7 +104,7 @@ assign [class="Pamac-manager"] → $ws6
 assign [class="Thunar"] → $ws7
 assign [class="discord"] → $ws8
 assign [class="Signal"] → $ws8
-assign [class="Audacious"] → $ws9
+assign [class="cmus"] → $ws9
 
 for_window [class="Alacritty"] focus
 for_window [class="Brave-browser"] focus
@@ -131,9 +132,9 @@ mode "$mode_system" {
 bar {
     status_command i3status -c ~/.config/i3/i3status.conf
     strip_workspace_numbers yes
-    height 24
+    height 16
     workspace_buttons yes
-	font pango:$font 9
+	font pango:$font 8
     tray_padding 2
     position bottom
     colors {
@@ -155,15 +156,17 @@ client.urgent           #d42121 #d42121 #f7f7f7 #d42121
 client.background       #111111
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
+exec --no-startup-id picom -b --config ~/.config/picom/picom.conf --experimental-backend
 exec --no-startup-id pamac-tray
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id discord --start-minimized
-exec --no-startup-id audacious
+exec --no-startup-id signal-desktop --start-in-tray
 exec --no-startup-id brave
-exec --no-startup-id picom -b --config ~/.config/picom/picom.conf --experimental-backend
+exec --no-startup-id alacritty --class "cmus,cmus" -e cmus
+exec --no-startup-id alacritty 
 
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id feh --bg-fill --randomize ~/.wallpaper &
-exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
 
