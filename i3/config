@@ -10,11 +10,11 @@ set $ws2 "2:"
 set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:ﭮ"
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:ﭮ"
+set $ws10 "10:"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -34,7 +34,7 @@ bindsym $mod+shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $mod+shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+shift+7 move container to workspace $ws7; workspace $ws7
-#bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 #bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 #bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
@@ -51,7 +51,6 @@ bindsym $mod+a focus parent
 bindsym $mod+b bar mode toggle
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+f fullscreen toggle
-bindsym $mod+m exec --no-startup-id alacritty -e cmus
 bindsym $mod+p exec --no-startup-id pamac-mainager
 bindsym $mod+q kill
 bindsym $mod+s exec --no-startup-id htop
@@ -67,7 +66,7 @@ bindsym $mod+Right workspace next
 bindsym $mod+Left workspace prev
 bindsym $mod+Tab workspace back_and_forth
 
-bindsym $mod+shift+b exec --no-startup-id bluetooth-autoconnect -v
+# bindsym $mod+shift+b exec --no-startup-id bluetooth-autoconnect -v
 bindsym $mod+shift+c reload
 bindsym $mod+shift+p exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 bindsym $mod+shift+r restart
@@ -85,8 +84,8 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioStop exec --no-startup-id playerctl stop
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id light -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -dec 20 # decrease screen brightness
 
 default_orientation auto
 focus_on_window_activation focus
@@ -98,24 +97,24 @@ hide_edge_borders smart
 gaps inner 2
 gaps outer 0
 
-assign [class="Alacritty"] → $ws1
-assign [class="Brave-browser"] → $ws2
-assign [class="Pamac-manager"] → $ws6
-assign [class="Thunar"] → $ws7
-assign [class="discord"] → $ws8
-assign [class="Signal"] → $ws8
-assign [class="cmus"] → $ws9
+assign [class="Alacritty"]      → $ws1
+assign [class="Brave-browser"]  → $ws2
+assign [class="Pamac-manager"]  → $ws7
+assign [class="Thunar"]         → $ws8
+assign [class="discord"]        → $ws9
+assign [class="Signal"]         → $ws9
+assign [class="cmus"]           → $ws10
 
-for_window [class="Alacritty"] focus
-for_window [class="Brave-browser"] focus
-for_window [class="firefox"] focus
-for_window [class="Thunar"] focus
-for_window [class="Pamac-manager"] focus
-for_window [class="Blueberry.py"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="^Preferences$"] floating enable
-for_window [window_role="setup"] floating enable
-for_window [urgent=latest] focus
+for_window [class="Alacritty"]              focus
+for_window [class="Brave-browser"]          focus
+for_window [class="firefox"]                focus
+for_window [class="Thunar"]                 focus
+for_window [class="Pamac-manager"]          focus
+for_window [urgent=latest]                  focus
+for_window [class="Blueberry.py"]           floating enable
+for_window [window_role="pop-up"]           floating enable
+for_window [window_role="^Preferences$"]    floating enable
+for_window [window_role="setup"]            floating enable
 
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
@@ -163,9 +162,9 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id discord --start-minimized
 exec --no-startup-id signal-desktop --start-in-tray
-exec --no-startup-id brave
 exec --no-startup-id alacritty --class "cmus,cmus" -e cmus
 exec --no-startup-id alacritty 
+exec --no-startup-id brave
 
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id feh --bg-fill --randomize ~/.wallpaper &
