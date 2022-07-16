@@ -6,14 +6,20 @@
 # example: ./mkvclean.sh 3
 
 cd $PWD
+
+if [ $# -gt 0 ]
+    then
+    trackID=$1
+    hasSub=true
+    mkdir -p subtitles
+fi 
+
 for f in *; do
   if [[ $f == *.mkv ]];
     then
     ffmpeg -loglevel error -i "$f" -codec copy "${f//mkv/mp4}"
-    if [ $# -gt 0 ]
+    if [[ $hasSub ]]
         then
-	    trackID=$1
-	    mkdir subtitles
 	    mkvextract tracks "$f" $trackID:"${f//mkv/ass}"
 	    mv "${f//mkv/ass}" subtitles
     fi
