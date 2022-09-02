@@ -6,15 +6,17 @@ set $down j
 set $left h
 set $right l
 set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:ﭮ"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
 set $ws10 "10:"
+set $browser "brave"
+set $videoplayer "vlc"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -49,16 +51,16 @@ bindsym $mod+shift+$right move right
 
 bindsym $mod+a focus parent
 bindsym $mod+b bar mode toggle
+bindsym $mod+c reload
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+f fullscreen toggle
-bindsym $mod+p exec --no-startup-id pamac-mainager
+bindsym $mod+p exec --no-startup-id PureRef 
 bindsym $mod+q kill
-bindsym $mod+s exec --no-startup-id htop
-bindsym $mod+t exec --no-startup-id thunar
+bindsym $mod+r restart
+bindsym $mod+s exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 bindsym $mod+u exec --no-startup-id pavucontrol
 bindsym $mod+v split toggle
-bindsym $mod+w exec --no-startup-id firefox
-# bindsym $mod+x mode "$mode_system"
+bindsym $mod+w exec --no-startup-id $browser
 bindsym $mod+x exec --no-startup-id ~/.config/i3/scripts/power-menu.sh
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Space focus mode_toggle
@@ -66,10 +68,13 @@ bindsym $mod+Right workspace next
 bindsym $mod+Left workspace prev
 bindsym $mod+Tab workspace back_and_forth
 
-# bindsym $mod+shift+b exec --no-startup-id bluetooth-autoconnect -v
-bindsym $mod+shift+c reload
-bindsym $mod+shift+p exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
-bindsym $mod+shift+r restart
+bindsym $mod+shift+b exec --no-startup-id bluetooth-autoconnect -v
+bindsym $mod+shift+c exec --no-startup-id alacritty -e htop
+bindsym $mod+shift+f exec --no-startup-id thunar
+bindsym $mod+shift+p exec --no-startup-id pamac-manager
+bindsym $mod+shift+s exec --no-startup-id flameshot full --clipboard --path ~/Pictures
+bindsym $mod+shift+t exec --no-startup-id Transmission-gtk
+bindsym $mod+shift+v exec --no-startup-id $videoplayer
 bindsym $mod+shift+space floating toggle
 
 bindsym $mod+$alt+Ctrl+$right resize shrink width 5 px
@@ -94,24 +99,31 @@ font pango: $font 8
 new_window pixel 1
 new_float pixel 1
 hide_edge_borders smart
-gaps inner 2
+gaps inner 1
 gaps outer 0
 
-assign [class="Alacritty"]      → $ws1
-assign [class="Brave-browser"]  → $ws2
-assign [class="Pamac-manager"]  → $ws7
-assign [class="Thunar"]         → $ws8
-assign [class="discord"]        → $ws9
-assign [class="Signal"]         → $ws9
-assign [class="cmus"]           → $ws10
+assign [class="Alacritty"]          → $ws1
+assign [class="Brave-browser"]      → $ws2
+assign [class="firefox"]            → $ws2
+assign [class=$videoplayer]         → $ws3
+assign [class="Pamac-manager"]      → $ws4
+assign [class="Blender"]            → $ws7
+assign [class="Transmission-gtk"]   → $ws8
+assign [class="Thunar"]             → $ws8
+assign [class="discord"]            → $ws9
+assign [class="Signal"]             → $ws9
+assign [class="cmus"]               → $ws10
+assign [class="Poddr"]              → $ws10
 
 for_window [class="Alacritty"]              focus
 for_window [class="Brave-browser"]          focus
+for_window [class="cmus"]                   focus
 for_window [class="firefox"]                focus
-for_window [class="Thunar"]                 focus
 for_window [class="Pamac-manager"]          focus
+for_window [class="Thunar"]                 focus
+for_window [class="vlc"]                    focus
+for_window [class="Blender"]                focus
 for_window [urgent=latest]                  focus
-for_window [class="Blueberry.py"]           floating enable
 for_window [window_role="pop-up"]           floating enable
 for_window [window_role="^Preferences$"]    floating enable
 for_window [window_role="setup"]            floating enable
@@ -162,10 +174,12 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id discord --start-minimized
 exec --no-startup-id signal-desktop --start-in-tray
+exec --no-startup-id transmission-gtk
+exec --no-startup-id thunar 
 exec --no-startup-id alacritty --class "cmus,cmus" -e cmus
 exec --no-startup-id alacritty 
-exec --no-startup-id brave
+exec --no-startup-id $browser
 
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id feh --bg-fill --randomize ~/.wallpaper &
+exec_always --no-startup-id feh --bg-fill --randomize ~/.wallpaper 
 
