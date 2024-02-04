@@ -1,0 +1,13 @@
+[env]
+WINIT_X11_SCALE_FACTOR = "1.0"
+
+[shell]
+program = "/bin/zsh"
+args = ["-l"]
+
+[window]
+padding= { x=15, y=15 }
+decorations="Buttonless"
+opacity=0.9
+startup_mode = "SimpleFullscreen"
+decorations_theme_variant = "Dark"
